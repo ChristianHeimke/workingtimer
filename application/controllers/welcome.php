@@ -19,8 +19,22 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('start');
+        $query = $this->db->query("SELECT id FROM timetable WHERE date='".date("Y-m-d")."' LIMIT 1");
+
+        if($query->num_rows()>0)
+            $data['status'] = "stop";
+        else
+            $data['status'] = "start";
+
+		$this->load->view('start',$data);
 	}
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->database();
+    }
+
 }
 
 /* End of file welcome.php */

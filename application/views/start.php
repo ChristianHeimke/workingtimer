@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Workingtimer</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 	<style type="text/css">
 
@@ -33,30 +33,27 @@
 		padding: 14px 15px 10px 15px;
 	}
 
-
 	#body{
 		margin: 0 15px 0 15px;
         text-align: center;
-
-	}
-
-	p.footer{
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
 	}
 
 	#container{
+
 		margin: 10px;
 		border: 1px solid #D0D0D0;
 		-webkit-box-shadow: 0 0 8px #D0D0D0;
 	}
 
+    #timer{
+        width:150px;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-    .start_button {
+
+    .button_start {
         -moz-box-shadow:inset 0px 1px 0px 0px #caefab;
         -webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
         box-shadow:inset 0px 1px 0px 0px #caefab;
@@ -76,25 +73,97 @@
         padding:6px 24px;
         text-decoration:none;
         text-shadow:1px 1px 0px #aade7c;
-    }.start_button:hover {
+        width:100px;
+    }.button_start:hover {
          background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
          background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
-         background-color:#5cb811;
-     }.start_button:active {
+             button_start-color:#5cb811;
+     }.button_start:active {
           position:relative;
           top:1px;
       }
+    .button_stop {
+        -moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+        -webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+        box-shadow:inset 0px 1px 0px 0px #f29c93;
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100) );
+        background:-moz-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100');
+        background-color:#fe1a00;
+        -moz-border-radius:6px;
+        -webkit-border-radius:6px;
+        border-radius:6px;
+        border:1px solid #d83526;
+        display:inline-block;
+        color:#ffffff;
+        font-family:arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:6px 24px;
+        text-decoration:none;
+        text-shadow:1px 1px 0px #b23e35;
+        width:100px;
+    }.button_stop:hover {
+         background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
+         background:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100', endColorstr='#fe1a00');
+         background-color:#ce0100;
+     }.button_stop:active {
+          position:relative;
+          top:1px;
+      }
+
+    .button_pause {
+        -moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+        -webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+        box-shadow:inset 0px 1px 0px 0px #fce2c1;
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+        background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+        background-color:#ffc477;
+        -moz-border-radius:6px;
+        -webkit-border-radius:6px;
+        border-radius:6px;
+        border:1px solid #eeb44f;
+        display:inline-block;
+        color:#ffffff;
+        font-family:arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:6px 24px;
+        text-decoration:none;
+        text-shadow:1px 1px 0px #cc9f52;
+        width:100px;
+    }.button_pause:hover {
+         background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+         background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+         background-color:#fb9e25;
+     }.button_pause:active {
+          position:relative;
+          top:1px;
+      }
+
 	</style>
 </head>
 <body>
 
 <div id="container">
-	<h1>workingTimer</h1>
+	<h1>workingtimer</h1>
 
 	<div id="body">
-        Today: <?=date("d.m.Y")?><br/><br/>
-        <a href="/timer/start" class="start_button">start</a>
+        <div id="timer">
+        Today: <?=date("d.m.Y")?><br/>
+        Total time today: 00:00
+        </div><br/>
+        <?php if ($status == 'start'): ?>
+            <a href="<?= site_url("timer/start") ?>" class="button_start">start</a>
+        <?php else: ?>
+            <a href="<?= site_url("timer/pause") ?>" class="button_pause">pause</a>
+            <br/><br/>
+            <a href="<?= site_url("timer/stop") ?>" class="button_stop">stop</a>
+        <?php endif;?>
 	</div>
 <br/>
 </div>
