@@ -53,6 +53,20 @@
         white-space: nowrap;
     }
 
+    tr,td,table,th{
+                 border:1px solid #D0D0D0;
+                 margin: 3px;
+                 padding: 4px;
+                 border-collapse: collapse;
+             }
+
+    tr:hover {
+        background-color: #9acd32;
+    }
+    th{
+        background-color: #d3d3d3;
+    }
+
 	</style>
 </head>
 <body>
@@ -61,16 +75,21 @@
 	<h1>workingtimer | overview</h1>
 
 	<div id="body">
-
-        <table>
+        <table border="0" cellspacing="0">
             <tr>
-                <td>date</td>
-                <td>working time</td>
+                <th>date</th>
+                <th>working time</th>
+
             </tr>
+            <?php foreach ($items as $item): ?>
+
+            <tr>
+                <td><?= $item['date'] ?></td>
+                <td><?= $item['duration'] ?></td>
+            </tr>
+            <?php endforeach; ?>
         </table>
-
 	</div>
-
 <br/>
 </div>
 <center><a href="<?= site_url("")?>">start</a></center>

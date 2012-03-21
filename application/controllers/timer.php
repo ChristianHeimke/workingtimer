@@ -28,14 +28,6 @@ class timer extends CI_Controller
         redirect("/");
     }
 
-    function pause(){
-        $this->item->pause();
-        //$query = $this->db->query('SELECT id FROM timetable WHERE date="'.date("Y-m-d").'" LIMIT 1');
-        //$row = $query->row();
-
-        //$id = $row->id;
-    }
-
     function get_DiffTimestamp(){
         $query = $this->db->query('SELECT start,stop FROM timetable WHERE date="'.date("Y-m-d").'" LIMIT 1');
         $row = $query->row();

@@ -10,6 +10,11 @@ class log extends CI_Controller
 {
 
     function index(){
-        $this->load->view("log");
+
+        $item = new Timeritem();
+
+        $data['items'] = $item->getAll();
+
+        $this->load->view("log",$data);
     }
 }

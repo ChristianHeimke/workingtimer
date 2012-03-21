@@ -84,6 +84,25 @@ class Timeritem extends CI_Model
         }
 
         return join(' ', $ret);
-}
+    }
+
+
+    function getAll(){
+        $query = $this->db->query('SELECT date FROM timetable order by date');
+
+        $items = array();
+
+
+        foreach ($query->result() as $row)
+        {
+            $item['date'] = $row->date;
+            $item['duration'] = $this->getDuration($row->date);
+
+            $items[] = $item;
+        }
+
+        return $items;
+    }
+
 
 }
