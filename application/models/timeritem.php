@@ -61,7 +61,10 @@ class Timeritem extends CI_Model
 
        $query = $this->db->query("SELECT total_sec FROM timetable WHERE date='$date' LIMIT 1");
 
-        return $query->row()->total_sec;
+        if($query->num_rows > 0)
+            return $query->row()->total_sec;
+
+        return "0";
     }
 
     function getDuration($date){

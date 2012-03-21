@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<title>Workingtimer</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <link rel="apple-touch-icon-precomposed" href="<?= base_url()?>images/apple-touch-icon-precomposed.png" />
+    <link rel="icon" href="<?= base_url()?>images/favicon.ico" type="image/x-icon">
 	<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
