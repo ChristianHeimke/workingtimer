@@ -50,6 +50,7 @@
         text-align: left;
         margin-left: auto;
         margin-right: auto;
+        white-space: nowrap;
     }
 
 
@@ -114,36 +115,6 @@
           top:1px;
       }
 
-    .button_pause {
-        -moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-        -webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-        box-shadow:inset 0px 1px 0px 0px #fce2c1;
-        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
-        background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
-        background-color:#ffc477;
-        -moz-border-radius:6px;
-        -webkit-border-radius:6px;
-        border-radius:6px;
-        border:1px solid #eeb44f;
-        display:inline-block;
-        color:#ffffff;
-        font-family:arial;
-        font-size:15px;
-        font-weight:bold;
-        padding:6px 24px;
-        text-decoration:none;
-        text-shadow:1px 1px 0px #cc9f52;
-        width:100px;
-    }.button_pause:hover {
-         background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
-         background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-         background-color:#fb9e25;
-     }.button_pause:active {
-          position:relative;
-          top:1px;
-      }
 
 	</style>
 </head>
@@ -155,18 +126,18 @@
 	<div id="body">
         <div id="timer">
         Today: <?=date("d.m.Y")?><br/>
-        Total time today: 00:00
+        Total time today: <?= $duration ?>
         </div><br/>
-        <?php if ($status == 'start'): ?>
-            <a href="<?= site_url("timer/start") ?>" class="button_start">start</a>
-        <?php else: ?>
-            <a href="<?= site_url("timer/pause") ?>" class="button_pause">pause</a>
-            <br/><br/>
+        <?php if ($status == 'running'): ?>
             <a href="<?= site_url("timer/stop") ?>" class="button_stop">stop</a>
+        <?php else: ?>
+            <a href="<?= site_url("timer/start") ?>" class="button_start">start</a>
         <?php endif;?>
+
 	</div>
+
 <br/>
 </div>
-
+<center><a href="<?= site_url("log")?>">overview</a></center>
 </body>
 </html>

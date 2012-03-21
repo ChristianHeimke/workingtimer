@@ -2,6 +2,10 @@
 
 class Welcome extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
 	/**
 	 * Index Page for this controller.
 	 *
@@ -19,21 +23,21 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-        $query = $this->db->query("SELECT id FROM timetable WHERE date='".date("Y-m-d")."' LIMIT 1");
+        $timer = new Timeritem();
+        $data['status'] = "";
+        $data['duration'] = $timer->getDuration(date("Y-m-d"));
 
-        if($query->num_rows()>0)
-            $data['status'] = "stop";
-        else
-            $data['status'] = "start";
+
+        if($timer->isRunning()){
+            $data['status'] = "running";
+            $data['duration'] = "<i>in progress</i>";
+        }
+
 
 		$this->load->view('start',$data);
 	}
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->database();
-    }
+
 
 }
 

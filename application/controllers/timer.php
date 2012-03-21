@@ -9,27 +9,31 @@
  */
 class timer extends CI_Controller
 {
+    var $item;
+
     public function __construct()
     {
         parent::__construct();
-        $this->load->database();
+        $this->item = new Timeritem();
     }
 
     function start(){
-        $this->db->query("INSERT INTO timetable(date,start) VALUES ('".date("Y-m-d")."','".time()."')");
+
+        $this->item->start();
         redirect("/");
     }
 
     function stop(){
-        $this->db->query("UPDATE timetable SET stop='".time()."' WHERE date='".date("Y-m-d")."'");
+        $this->item->stop();
         redirect("/");
     }
 
     function pause(){
-        $query = $this->db->query('SELECT id FROM timetable WHERE date="'.date("Y-m-d").'" LIMIT 1');
-        $row = $query->row();
+        $this->item->pause();
+        //$query = $this->db->query('SELECT id FROM timetable WHERE date="'.date("Y-m-d").'" LIMIT 1');
+        //$row = $query->row();
 
-        $id = $row->id;
+        //$id = $row->id;
     }
 
     function get_DiffTimestamp(){
